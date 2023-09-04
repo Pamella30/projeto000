@@ -5,7 +5,7 @@ import Time from './componentes/Time';
 
 function App() {
 
-  const continentes = [
+  const equipes = [
 
     {
       nome: 'Amarelo',
@@ -15,8 +15,8 @@ function App() {
 
     {
       nome: 'Azul',
-      corPrimaria: '#0000CD',
-      corSecundaria: '#002776'
+      corPrimaria: '#002776',
+      corSecundaria: '#0000CD'
     },
 
     {
@@ -25,9 +25,9 @@ function App() {
       corSecundaria: '#009c3b'
     },
 
-    {
+      {
       nome: 'Branco',
-      corPrimaria: '#FFFAFA',
+      corPrimaria: '#F5F5F5',
       corSecundaria: '#ffffff'
     },
 
@@ -41,20 +41,20 @@ function App() {
 const [colaboradores, setColaboradores] = useState([])
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
-    console.log(colaborador)
     setColaboradores([...colaboradores, colaborador])
   }
 
   return (
     <div className="App">
       <Banner />
-      <Formulario continentes={continentes.map(continente => continente.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
-      {continentes.map(continente => <Time 
-        key={continente.nome}  
-        nome={continente.nome} 
-        corPrimaria={continente.corPrimaria} 
-        corSecundaria={continente.corSecundaria}
-        colaboradores={colaboradores}
+      <Formulario equipes={equipes.map(equipe=> equipe.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
+      {equipes.map(equipe => <Time 
+        key={equipe.nome}  
+        nome={equipe.nome} 
+        corPrimaria={equipe.corPrimaria} 
+        corSecundaria={equipe.corSecundaria}
+        colaboradores={colaboradores.filter(colaborador => colaborador.equipe === equipe.nome)}
+
       />)}
     </div>
   );

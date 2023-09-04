@@ -7,18 +7,22 @@ import { useState } from 'react'
 const Formulario = (props) => {
 
     const [nome, setNome] = useState('')
-    const [esporte, setFuncao] = useState('')
+    const [funcao, setFuncao] = useState('')
     const [imagem, setImagem] = useState('')
-    const [continente, setEquipe] = useState('')
+    const [equipe, setEquipe] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
         props.aoColaboradorCadastrado({
             nome, 
-            esporte,
+            funcao,
             imagem,
-            continente
+            equipe
         })
+        setNome('')
+        setFuncao('')
+        setImagem('')
+        setEquipe('')
     }
 
     return (
@@ -35,8 +39,8 @@ const Formulario = (props) => {
                 <CampoTexto 
                     obrigatorio={true} 
                     label="Funcao" 
-                    placeholder="Digite o esporte"
-                    valor={esporte} 
+                    placeholder="Digite a funcao"
+                    valor={funcao} 
                     aoAlterado={valor => setFuncao(valor)}
                 />
 
@@ -49,8 +53,8 @@ const Formulario = (props) => {
                 <ListaSuspensa 
                     label="Equipe"
                     obrigatorio={true} 
-                    itens={props.continentes}
-                    valor={continente} 
+                    itens={props.equipes}
+                    valor={equipe} 
                     aoAlterado={valor => setEquipe(valor)} />
                 <Botao>
                     Criar Card
